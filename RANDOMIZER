@@ -1,0 +1,28 @@
+
+from random import randint
+from PyQt5.QtCore import Qt
+from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QPushButton, QVBoxLayout
+
+app = QApplication([])
+main_win = QWidget()
+main_win.setWindowTitle("Генератор победителя")
+main_win.move(400, 200)
+winner = QLabel('Нажми, чтобы узнать победителя')
+question = QLabel('?')
+generation = QPushButton('Сгенерировать')
+
+my_layout = QVBoxLayout()
+my_layout.addWidget(winner, alignment = Qt.AlignCenter)
+my_layout.addWidget(question, alignment = Qt.AlignCenter)
+my_layout.addWidget(generation, alignment = Qt.AlignCenter)
+main_win.setLayout(my_layout)
+#обработка событий
+def show_winner():
+    num = randint(0, 99)
+    winner.setText('Победитель:')
+    question.setText(str(num))
+generation.clicked.connect(show_winner)
+
+
+main_win.show()
+app.exec_()
